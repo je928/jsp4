@@ -36,8 +36,9 @@ function formSubmit() {
 	//alert(param.id);
 	//alert(param.pwd);
 	//alert(JSON.stringify(param));
-	
-	
+	param = [{"id":"value","pwd":"value"}, {"id":"value","pwd":"value"}];
+	alert(param[0].id);
+	alert(param[1].pwd);
 }
 </script>
 
