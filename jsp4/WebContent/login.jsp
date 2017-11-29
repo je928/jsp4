@@ -9,6 +9,10 @@
 <body>
 
 <script>
+/* 
+dom: document object mode
+bom: browser object mode
+*/
 function checkValue() {
 	var id = document.getElementById('id');
 	var pwd = document.getElementById('pwd');
@@ -24,10 +28,17 @@ function checkValue() {
 	}
 	return true;
 }
-/* 
-	dom: document object mode
-	bom: browser object mode
-*/
+
+function formSubmit() {
+	var param = {};
+	param["id"] = document.getElementById("id").value;
+	param["pwd"] = document.getElementById("pwd").value;
+	//alert(param.id);
+	//alert(param.pwd);
+	//alert(JSON.stringify(param));
+	
+	
+}
 </script>
 
 <form method="post" action="/test.login" onsubmit="return checkValue()">
@@ -35,7 +46,7 @@ function checkValue() {
 	<br>
 	비밀번호 : <input type="password" name="pwd" id="pwd" />
 	<p>
-	<input type="submit" value="로그인" />
+	<input type="button" value="로그인" onClick="formSubmit()" />
 </form>
 
 </body>

@@ -52,6 +52,7 @@ public class LoginServlet extends HttpServlet {
 		if(!msg.equals("")) {
 			pw.print("<script>");
 			pw.print("alert('"+msg+"')");
+			pw.print("location.href='/login.jsp'");
 			pw.print("</script>");
 		}
 		
