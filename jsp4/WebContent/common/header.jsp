@@ -13,7 +13,7 @@
 	<a href="/index.jsp">Home</a>
 	<a href="/login.jsp">로그인</a>
 	<a href="/index.jsp">회원가입</a>
-	<a href="/index.jsp">게시판</a>
+	<a href="/exam/exam.jsp">게시판</a>
 	<p>
 	
 </body>

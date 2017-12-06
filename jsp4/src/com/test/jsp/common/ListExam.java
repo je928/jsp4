@@ -1,48 +1,29 @@
 package com.test.jsp.common;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DBCon {
-
-	Connection con = null;
+public class ListExam {
 	
-	public Connection getConnection() throws ClassNotFoundException, SQLException {
-		if(con != null) {
-			return con;
-		}
-		String url = "jdbc:mysql://localhost:3306/jsp4";
-		String id = "root";
-		String pwd = "1234";
-		Class.forName("org.mariadb.jdbc.Driver"); // new Driver();
-		con = DriverManager.getConnection(url, id, pwd);
-		return con;
-	}
+	public ArrayList<HashMap<String,String>> getUserList() { 
 	
-	public void closeCon() throws SQLException {
-		if (con != null) {
-			con.close();
-			con = null;
-		}
-	}
-	
-	public static void main(String[] args) {
-
+		ArrayList<HashMap<String, String>> al = new ArrayList<HashMap<String, String>>();
 		DBCon dbCon = new DBCon();
 		
 		try {
 			
 			Connection con = dbCon.getConnection();
 			
-			String sql = "select * from user_info";
+			String sql = "select * from user_info ui, " + 
+					" depart_info di" + 
+					" where ui.dino=di.dino;";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			ArrayList<HashMap<String, String>> al = new ArrayList<HashMap<String, String>>();
+			
 			HashMap<String, String> hm;
 			while (rs.next()) {
 				hm = new HashMap<String, String>();
@@ -53,12 +34,11 @@ public class DBCon {
 				hm.put("userage", rs.getString("userage"));
 				hm.put("useraddress", rs.getString("useraddress"));
 				hm.put("dino", rs.getString("dino"));
+				hm.put("diname", rs.getString("diname"));
+				hm.put("dietc", rs.getString("dietc"));
 				al.add(hm);
 			}
-			for(HashMap<String,String> h : al) {
-				System.out.println(h);
-			}
-
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {
@@ -68,7 +48,21 @@ public class DBCon {
 				e.printStackTrace();
 			}
 		}
-
+		return al;
 	}
-
+	
+	
+	
+	public static void main(String[] args) {
+		
+		ListExam le = new ListExam();
+		
+		ArrayList<HashMap<String,String>> strs = le.getUserList();
+		
+		for(HashMap<String,String> hm : strs) {
+			System.out.println(hm);
+		}
+		
+	}
+	
 }

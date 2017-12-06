@@ -42,13 +42,15 @@ function formSubmit() {
 }
 </script>
 
-<form method="post" action="/test.login" onsubmit="return checkValue()">
-	아이디 : <input type="text" name="id" id="id" />
-	<br>
-	비밀번호 : <input type="password" name="pwd" id="pwd" />
-	<p>
-	<input type="button" value="로그인" onClick="formSubmit()" />
-</form>
+	<jsp:include page="/common/header.jsp"></jsp:include>
+	
+	<form method="post" action="/test.login" onsubmit="return checkValue()">
+		아이디 : <input type="text" name="id" id="id" />
+		<br>
+		비밀번호 : <input type="password" name="pwd" id="pwd" />
+		<p>
+		<input type="button" value="로그인" onClick="formSubmit()" />
+	</form>
 
 </body>
 </html>

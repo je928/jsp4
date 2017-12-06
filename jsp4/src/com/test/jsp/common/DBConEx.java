@@ -8,37 +8,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DBCon {
+public class DBConEx {
 
-	Connection con = null;
-	
-	public Connection getConnection() throws ClassNotFoundException, SQLException {
-		if(con != null) {
-			return con;
-		}
+	public static void main(String[] args) {
+
+		Connection con = null;
 		String url = "jdbc:mysql://localhost:3306/jsp4";
 		String id = "root";
 		String pwd = "1234";
-		Class.forName("org.mariadb.jdbc.Driver"); // new Driver();
-		con = DriverManager.getConnection(url, id, pwd);
-		return con;
-	}
-	
-	public void closeCon() throws SQLException {
-		if (con != null) {
-			con.close();
-			con = null;
-		}
-	}
-	
-	public static void main(String[] args) {
 
-		DBCon dbCon = new DBCon();
-		
 		try {
-			
-			Connection con = dbCon.getConnection();
-			
+
+			Class.forName("org.mariadb.jdbc.Driver"); // new Driver();
+			con = DriverManager.getConnection(url, id, pwd);
 			String sql = "select * from user_info";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -62,10 +44,12 @@ public class DBCon {
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {
-			try {
-				dbCon.closeCon();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
