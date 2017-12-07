@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Iterator" %>
 <%@ page import="com.test.jsp.common.ListExam" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,15 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	table th {
-		background: #dddddd;
-	}
-	table tr:nth-child(odd) {
-		background: #cccccc;
-	}
-	table tr:nth-child(even) {
-		background: #dcdcdc;
-	}
 	table th, td {
 		padding: 5px;
 	}
@@ -46,15 +38,11 @@
 <%
 	for(HashMap<String,String> map : userList) {
 		out.println("<tr>");
-		out.println("<td>"+map.get("userno")+"</td>");
-		out.println("<td>"+map.get("userid")+"</td>");
-		out.println("<td>"+map.get("userpwd")+"</td>");
-		out.println("<td>"+map.get("username")+"</td>");
-		out.println("<td>"+map.get("userage")+"</td>");
-		out.println("<td>"+map.get("useraddress")+"</td>");
-		out.println("<td>"+map.get("dino")+"</td>");
-		out.println("<td>"+map.get("diname")+"</td>");
-		out.println("<td>"+map.get("dietc")+"</td>");
+		Iterator<String> it = map.keySet().iterator();
+		while(it.hasNext()) {
+			String key = it.next();
+			out.println("<td>"+map.get(key)+"</td>");
+		}
 		out.println("</tr>");
 	}
 %>

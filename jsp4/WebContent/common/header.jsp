@@ -7,13 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JSP4</title>
+<script src="/js/AjaxUtil.js" type="text/javascript"></script>
 </head>
 <body>
 
 	<a href="/index.jsp">Home</a>
-	<a href="/login.jsp">로그인</a>
+	<a href="/user/login.jsp">로그인</a>
 	<a href="/index.jsp">회원가입</a>
 	<a href="/exam/exam.jsp">게시판</a>
+	<a href="/user/login.jsp">유저리스트</a>
 	<p>
 	
 </body>
