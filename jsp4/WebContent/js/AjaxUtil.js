@@ -19,7 +19,7 @@ var AjaxUtil = function(p_url, p_params, p_method,p_aSync){ // 익명함수 : �
 	this.xhr.callback = null;
 	this.xhr.onreadystatechange=function(){
    		if (this.readyState==4){
-   			if(this.status==200){ // request,response 성공
+   			if(this.status==200){ // request,response 성공, 200번대 아니면 모두 에러.
 	   			var result = decodeURIComponent(this.responseText);
 	   			if(this.callback){
 	   				this.callback(result);

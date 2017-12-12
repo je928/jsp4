@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <script>
-	var test = function() {
+	var test = function() { // 변수함수선언
 		this.a = 1;
 		this.b = 2;
 		var c = 3;
@@ -20,7 +20,9 @@
 		}
 	}
 	
-	function func() {
+	/* javascript는 실행 시 function ~() { } 함수선언을 모두 메모리에 적재. 변수함수선언 제외. */
+	
+	function func() { // 함수선언
 		try {
 		var t = new test();
 		exam(); // javascript는 오버로딩이 되지 않는다. 오버라이딩만 됨.
@@ -40,6 +42,7 @@
 	function exam(a,b) {
 		alert("222");
 	}
+	
 </script>
 <body>
 <%

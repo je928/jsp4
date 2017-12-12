@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.test.jsp.common.DBCon;
+import com.test.jsp.dto.UserInfo;
 
 public class UserServiceImpl implements UserService {
 	
-	public HashMap<String,String> getUser(String id, String pwd) throws ClassNotFoundException, SQLException { 
+	//public HashMap<String,String> getUser(String id, String pwd) throws ClassNotFoundException, SQLException { 
+	public UserInfo getUser(String id, String pwd) throws ClassNotFoundException, SQLException {
 		
-		HashMap<String,String> hm = new HashMap<String,String>();
 		DBCon dbCon = new DBCon();
 		
 		Connection con = dbCon.getConnection();
@@ -27,20 +28,20 @@ public class UserServiceImpl implements UserService {
 		ps.setString(1, id); // 바인딩
 		ps.setString(2, pwd); // 바인딩
 		ResultSet rs = ps.executeQuery();
+		UserInfo ui = new UserInfo();
 		
 		while (rs.next()) {
-			hm = new HashMap<String, String>();
-			hm.put("userno", rs.getString("userno"));
-			hm.put("username", rs.getString("username"));
-			hm.put("userid", rs.getString("userid"));
-			hm.put("userpwd", rs.getString("userpwd"));
-			hm.put("userage", rs.getString("userage"));
-			hm.put("useraddress", rs.getString("useraddress"));
-			hm.put("dino", rs.getString("dino"));
-			hm.put("diname", rs.getString("diname"));
-			hm.put("dietc", rs.getString("dietc"));
+			ui.setUserNo(rs.getInt("userno"));
+			ui.setUserName(rs.getString("username"));
+			ui.setUserId(rs.getString("userid"));
+			ui.setUserPwd(rs.getString("userpwd"));
+			ui.setUserAge(rs.getInt("userage"));
+			ui.setUserAddress(rs.getString("useraddress"));
+			ui.setDiNo(rs.getInt("dino"));
+			ui.setDiName(rs.getString("diname"));
+			ui.setDiEtc(rs.getString("dietc"));
 		}
-		return hm;
+		return ui;
 		
 	}
 	

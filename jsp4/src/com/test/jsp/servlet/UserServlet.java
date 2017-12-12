@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.test.jsp.dto.UserInfo;
 import com.test.jsp.service.UserService;
 import com.test.jsp.service.UserServiceImpl;
 
@@ -63,18 +64,18 @@ public class UserServlet extends HttpServlet {
 		}else if(cmd.equals("login")) {
 			String id = req.getParameter("id");
 			String pwd = req.getParameter("pwd");
-			HashMap<String, String> hm;
+			HashMap<String,String> hm = new HashMap<String,String>();
 			try {
-				hm = us.getUser(id, pwd);
+				UserInfo ui = us.getUser(id, pwd);
 				Gson gs = new Gson();
-				if(hm.size()==0) {
+				if(ui.getUserId() == null) {
 					hm.put("result", "no");
 					hm.put("msg","아이디와 비밀번호를 확인하세요.");
 				}else {
 					HttpSession hs = req.getSession();
-					hs.setAttribute("user", hm);
+					hs.setAttribute("user", ui);
 					hm.put("result", "ok");
-					hm.put("msg", hm.get("username") + "님 로그인 성공.");
+					hm.put("msg", ui.getUserName() + "님 로그인 성공.");
 				}
 				out.println(gs.toJson(hm)); // 구글에서 만든 json 매퍼객체, spring에서는 jackson을 많이 사용.
 			} catch (ClassNotFoundException e) {
@@ -82,7 +83,10 @@ public class UserServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+		}else if(cmd.equals("logout")) {
+			HttpSession hs = req.getSession();
+			hs.invalidate();
+			res.sendRedirect("/user/login.jsp");
 		}else {
 			res.sendRedirect("/error/error.jsp");
 		}
