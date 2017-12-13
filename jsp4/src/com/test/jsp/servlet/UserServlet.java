@@ -18,6 +18,8 @@ import com.test.jsp.dto.UserInfo;
 import com.test.jsp.service.UserService;
 import com.test.jsp.service.UserServiceImpl;
 
+import sun.swing.UIAction;
+
 public class UserServlet extends HttpServlet {
 	
 	UserService us = new UserServiceImpl();
@@ -87,6 +89,21 @@ public class UserServlet extends HttpServlet {
 			HttpSession hs = req.getSession();
 			hs.invalidate();
 			res.sendRedirect("/user/login.jsp");
+		}else if(cmd.equals("join")) {
+
+			String params= req.getParameter("params");
+			Gson gs = new Gson();
+			HashMap hm = gs.fromJson(params, HashMap.class);
+			int result = us.insertUser(hm);
+			hm.put("result", "no");
+			hm.put("msg", "회원가입 실패.");
+			if(result != 0) {
+				hm.put("result", "ok");
+				hm.put("msg", "회원가입 성공.");
+				hm.put("url", "/user/login.jsp");
+			}
+			out.println(gs.toJson(hm));
+			
 		}else {
 			res.sendRedirect("/error/error.jsp");
 		}

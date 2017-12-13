@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
 		ps.setString(2, pwd); // 바인딩
 		ResultSet rs = ps.executeQuery();
 		UserInfo ui = new UserInfo();
-		
 		while (rs.next()) {
 			ui.setUserNo(rs.getInt("userno"));
 			ui.setUserName(rs.getString("username"));
@@ -86,6 +85,37 @@ public class UserServiceImpl implements UserService {
 		}
 		return al;
 		
+	}
+	
+	public int insertUser(HashMap hm) {
+		
+		int result = 0;
+		DBCon dbCon = new DBCon();
+		
+		try {
+			
+			Connection con = dbCon.getConnection();
+			
+			String sql = "insert into user_info(" + 
+					" userid,userpwd,username,userage,useraddress" + 
+					" ) values (?,?,?,?,?)";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, (String)hm.get("id"));
+			ps.setString(2, (String)hm.get("pwd"));
+			ps.setString(3, (String)hm.get("name"));
+			ps.setString(4, (String)hm.get("age"));
+			ps.setString(5, (String)hm.get("address"));
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				dbCon.closeCon();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
 	
 }

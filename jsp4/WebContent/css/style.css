@@ -1,5 +1,5 @@
 @charset "UTF-8";
 
 table tr:nth-child(even) {
-		background: #e0d9ea;
-	}
+	background: #e0d9ea;
+}

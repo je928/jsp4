@@ -23,18 +23,19 @@
 %>
 	<jsp:include page="/common/header.jsp"></jsp:include>
 	
-	<table border="1" style="text-align:center;">
-		<tr>
-			<th>userno</th>
-			<th>userid</th>
-			<th>userpwd</th>
-			<th>username</th>
-			<th>userage</th>
-			<th>useraddress</th>
-			<th>dino</th>
-			<th>diname</th>
-			<th>dietc</th>
-		</tr>
+	<div class="container">
+		<table border="1" style="text-align:center;">
+			<tr>
+				<th>userno</th>
+				<th>userid</th>
+				<th>userpwd</th>
+				<th>username</th>
+				<th>userage</th>
+				<th>useraddress</th>
+				<th>dino</th>
+				<th>diname</th>
+				<th>dietc</th>
+			</tr>
 <%
 	for(HashMap<String,String> map : userList) {
 		out.println("<tr>");
@@ -46,6 +47,7 @@
 		out.println("</tr>");
 	}
 %>
-	</table>
+		</table>
+	</div>
 </body>
 </html>
