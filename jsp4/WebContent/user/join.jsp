@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login</title>
+<title>Join</title>
 <link rel="stylesheet" href="<%=rootPath%>/css/join.css"/>
 </head>
 <script>
@@ -25,11 +25,16 @@
 		$("#joinBtn").click(function () {
 			var url = "join.user";
 			var params = {};
-			params["id"] = $("#id").val();
+			/* params["id"] = $("#id").val();
 			params["pwd"] = $("#pwd").val();
 			params["name"] = $("#name").val();
 			params["age"] = $("#age").val();
-			params["address"] = $("#address").val();
+			params["address"] = $("#address").val(); */
+			params["userId"] = $("#id").val();
+			params["userPwd"] = $("#pwd").val();
+			params["userName"] = $("#name").val();
+			params["userAge"] = $("#age").val();
+			params["userAddress"] = $("#address").val();
 			var param = {};
 			param["cmd"] = "join";
 			param["params"] = JSON.stringify(params);
@@ -44,8 +49,8 @@
 				}
 			});
 		});
+		
 	});
-	
 </script>
 <body>
 
@@ -57,7 +62,7 @@
 			<input type="text" id="id" name="id" class="form-control" placeholder="ID" required autofocus>
 			
 			<label for="pwd" class="sr-only">Password</label>
-			<input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required style="margin-bottom:-1px;">
+			<input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required>
 			
 			<label for="name" class="sr-only">Name</label>
 			<input type="text" name="name" id="name" class="form-control" placeholder="Name" required>

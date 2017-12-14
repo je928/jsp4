@@ -49,10 +49,9 @@ public class UserServlet extends HttpServlet {
 		if(cmd==null) {
 			res.sendRedirect("/error/error.jsp");
 		}else if(cmd.equals("list")) {
-			String html = "";
-			ArrayList<HashMap<String,String>> userList = us.getUserList();
-			html += "<table border='1'>";
-			for(HashMap<String,String> map : userList) {
+			//String html = "";
+			ArrayList<UserInfo> userList = us.getUserList();
+			/*for(HashMap<String,String> map : userList) {
 				html += "<tr>";
 				Iterator<String> it = map.keySet().iterator();
 				while(it.hasNext()) {
@@ -61,8 +60,10 @@ public class UserServlet extends HttpServlet {
 				}
 				html += "</tr>";
 			}
-			html += "</table>";
-			out.println(html);
+			HashMap<String,String> hm = new HashMap<String,String>();
+			hm.put("html", html);*/
+			Gson gs = new Gson();
+			out.println(gs.toJson(userList));
 		}else if(cmd.equals("login")) {
 			String id = req.getParameter("id");
 			String pwd = req.getParameter("pwd");
@@ -93,8 +94,11 @@ public class UserServlet extends HttpServlet {
 
 			String params= req.getParameter("params");
 			Gson gs = new Gson();
-			HashMap hm = gs.fromJson(params, HashMap.class);
-			int result = us.insertUser(hm);
+			/*HashMap hm = gs.fromJson(params, HashMap.class);
+			int result = us.insertUser(hm);*/
+			UserInfo ui = gs.fromJson(params, UserInfo.class);
+			int result = us.insertUser(ui);
+			HashMap<String,String> hm = new HashMap<String,String>();
 			hm.put("result", "no");
 			hm.put("msg", "회원가입 실패.");
 			if(result != 0) {

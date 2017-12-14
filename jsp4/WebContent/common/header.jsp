@@ -10,6 +10,7 @@
 <title>JSP4</title>
 <script src="<%=rootPath%>/js/jquery-3.2.1.min.js"></script>
 <script src="<%=rootPath%>/js/ajax_util.js"></script>
+<script src="<%=rootPath%>/js/header.js"></script>
 <script src="<%=rootPath%>/ui/btsp3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.3.2/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.3.2/css/bootstrap-theme.min.css"/>
@@ -41,11 +42,11 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="<%=rootPath%>/">Home</a></li>
-					<li><a href="<%=url%>"><%=log%></a></li>
-					<li><a href="<%=rootPath%>/user/join.jsp">회원가입</a></li>
-					<li><a href="<%=rootPath%>/exam/exam.jsp">게시판</a></li>
-					<li><a href="<%=rootPath%>/user/list.jsp">유저리스트</a></li>
+					<li id="homejsp"><a href="<%=rootPath%>/">Home</a></li>
+					<li id="loginjsp"><a href="<%=url%>"><%=log%></a></li>
+					<li id="joinjsp"><a href="<%=rootPath%>/user/join.jsp">회원가입</a></li>
+					<li id="listjsp"><a href="<%=rootPath%>/exam/exam.jsp">게시판</a></li>
+					<li id="userlistjsp"><a href="<%=rootPath%>/user/list.jsp">유저리스트</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

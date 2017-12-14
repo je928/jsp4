@@ -63,8 +63,11 @@
 %>
 	<div class="container">
 		<div class="page-header">
-			<h1><%=user.getUserName() %>님 환영합니다.</h1>
+			<h1>Welcome</h1>
 		</div>
+		<div class="well">
+        	<p><%=user.getUserName() %>님 환영합니다.</p>
+        </div>
 	</div>
 <%
 	} else {

@@ -6,12 +6,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login</title>
-<link rel="stylesheet" href="<%=rootPath%>/css/sign.css"/>
+<title>UserList</title>
 </head>
 <script>
 	
+	function callback(result) {
+		var ths = $("table[id='table'] thead tr th");
+		var str = "";
+		for(var i=0; i<result.length; i++) {
+			str += "<tr>";
+			for(var j=0; j<ths.length; j++) {
+				var th = ths[j].getAttribute("data-field");
+				str += "<td class='text-center'>" + result[i][th] + "</td>";
+			}
+			str += "</tr>";
+		}
+		$('#result_tbody').html(str);
+	}
+	
 	$(document).ready(function() {
+		var url = "list.user";
+		var param = {};
+		param["cmd"] = "list";
+		$.ajax({
+			type: "post",
+			url: url,
+			dataType: "json",
+			data: param,
+			success: callback,
+			error: function(xhr,status) {
+				alert("에러 : "+xhr.responseText);
+			}
+		});
 	});
 	
 </script>
@@ -20,6 +46,28 @@
 	<div class="container">
 		<div class="page-header">
 			<h1>UserList</h1>
+		</div>
+			<div class="row">
+			<div class="col-md-12">
+				<table class="table table-bordered table-hover table-striped" id="table">
+					<thead>
+						<tr>
+							<th class="text-center" data-field="userNo">userNo</th>
+							<th class="text-center" data-field="userId">userId</th>
+							<th class="text-center" data-field="userPwd">userPwd</th>
+							<th class="text-center" data-field="userName">userName</th>
+							<th class="text-center" data-field="userAge">userAge</th>
+							<th class="text-center" data-field="userAddress">userAddress</th>
+							<th class="text-center" data-field="diNo">dino</th>
+							<th class="text-center" data-field="diName">diname</th>
+							<th class="text-center" data-field="diEtc">dietc</th>
+						</tr>
+					</thead>
+					<tbody id="result_tbody">
+						
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 
