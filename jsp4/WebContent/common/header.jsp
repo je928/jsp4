@@ -15,16 +15,23 @@
 <link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.3.2/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.3.2/css/bootstrap-theme.min.css"/>
 <link rel="stylesheet" href="<%=rootPath%>/css/common.css"/>
+<script type="text/javascript">
+	function logoutFunc() {
+		if(confirm("로그아웃하시겠습니까?")) {
+			location.href="/user/logout.user?cmd=logout";	
+		}
+	}
+</script>
 </head>
 <%
 	//HashMap<String,String> user = (HashMap<String,String>)session.getAttribute("user");
 	// (HashMap<String,String>)session.getAttribute("user") : 경고, Object-HashMap
 	UserInfo user = (UserInfo)session.getAttribute("user");
-	String log = "로그인";
-	String url = "/user/login.jsp";
+	String log = "Login";
+	String url = rootPath + "/user/login.jsp";
 	if(user != null) {
-		log = "로그아웃";
-		url = "/user/logout.user?cmd=logout";
+		log = "Logout";
+		url = "javascript:logoutFunc();";
 	}
 %>
 <body>
@@ -44,9 +51,9 @@
 				<ul class="nav navbar-nav">
 					<li id="homejsp"><a href="<%=rootPath%>/">Home</a></li>
 					<li id="loginjsp"><a href="<%=url%>"><%=log%></a></li>
-					<li id="joinjsp"><a href="<%=rootPath%>/user/join.jsp">회원가입</a></li>
-					<li id="listjsp"><a href="<%=rootPath%>/exam/exam.jsp">게시판</a></li>
-					<li id="userlistjsp"><a href="<%=rootPath%>/user/list.jsp">유저리스트</a></li>
+					<li id="joinjsp"><a href="<%=rootPath%>/user/join.jsp">Join</a></li>
+					<li id="listjsp"><a href="<%=rootPath%>/exam/exam.jsp">Board</a></li>
+					<li id="userlistjsp"><a href="<%=rootPath%>/user/list.jsp">UserList</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

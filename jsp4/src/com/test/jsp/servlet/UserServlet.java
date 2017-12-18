@@ -91,7 +91,6 @@ public class UserServlet extends HttpServlet {
 			hs.invalidate();
 			res.sendRedirect("/user/login.jsp");
 		}else if(cmd.equals("join")) {
-
 			String params= req.getParameter("params");
 			Gson gs = new Gson();
 			/*HashMap hm = gs.fromJson(params, HashMap.class);
@@ -107,7 +106,26 @@ public class UserServlet extends HttpServlet {
 				hm.put("url", "/user/login.jsp");
 			}
 			out.println(gs.toJson(hm));
-			
+		}else if(cmd.equals("view")) {
+			int no = Integer.parseInt(req.getParameter("userno"));
+			Gson gs = new Gson();
+			UserInfo ui = us.getUser(no);
+			out.println(gs.toJson(ui));
+		}else if(cmd.equals("delete")) {
+			String checkPwd = req.getParameter("checkPwd");
+			Gson gs = new Gson();
+			UserInfo ui = (UserInfo)req.getSession().getAttribute("user");
+			ui.setUserPwd(checkPwd);
+			int result = us.deleteUser(ui);
+			HashMap<String,String> hm = new HashMap<String,String>();
+			hm.put("result", "no");
+			hm.put("msg", "회원탈퇴 실패.");
+			if(result != 0) {
+				hm.put("result", "ok");
+				hm.put("msg", "회원탈퇴 성공.");
+				hm.put("url", "/user/logout.user?cmd=logout");
+			}
+			out.println(gs.toJson(hm));
 		}else {
 			res.sendRedirect("/error/error.jsp");
 		}

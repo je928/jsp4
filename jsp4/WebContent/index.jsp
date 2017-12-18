@@ -10,7 +10,13 @@
 <body>
 	
 	<div class="container">
-		<h1>Home</h1>
+		<div class="page-header">
+			<h1>Home</h1>
+		</div>
+      	<div class="jumbotron">
+	        <h1>JSP4</h1>
+	        <p>index</p>
+      	</div>
 	</div>
 
 </body>

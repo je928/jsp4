@@ -14,7 +14,7 @@
 		var ths = $("table[id='table'] thead tr th");
 		var str = "";
 		for(var i=0; i<result.length; i++) {
-			str += "<tr>";
+			str += "<tr data-view='" + result[i].userNo + "'>";
 			for(var j=0; j<ths.length; j++) {
 				var th = ths[j].getAttribute("data-field");
 				str += "<td class='text-center'>" + result[i][th] + "</td>";
@@ -22,6 +22,19 @@
 			str += "</tr>";
 		}
 		$('#result_tbody').html(str);
+		$('tr[data-view]').hover(function() {
+			$(this).css("cursor", "pointer");
+			$(this).css("color", "#424242");
+			$(this).css("font-weight", "bold");
+		}, function(){
+			$(this).css("cursor", "default");
+			$(this).css("color", "black");
+			$(this).css("font-weight", "");
+		});
+		$('tr[data-view]').click(function() {
+			var userNo = this.getAttribute("data-view");
+			location.href = "./view.jsp?userno=" + userNo;
+		});
 	}
 	
 	$(document).ready(function() {
@@ -47,7 +60,7 @@
 		<div class="page-header">
 			<h1>UserList</h1>
 		</div>
-			<div class="row">
+		<div class="row">
 			<div class="col-md-12">
 				<table class="table table-bordered table-hover table-striped" id="table">
 					<thead>
