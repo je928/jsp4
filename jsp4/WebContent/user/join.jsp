@@ -68,7 +68,7 @@
 			<input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
 			
 			<label for="age" class="sr-only">Age</label>
-			<input type="text" name="age" id="age" class="form-control" placeholder="Age" required>
+			<input type="number" name="age" id="age" class="form-control" placeholder="Age" required>
 			
 			<label for="address" class="sr-only">Address</label>
 			<input type="text" name="address" id="address" class="form-control" placeholder="Address" required>

@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="com.test.jsp.dto.UserInfo" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% String rootPath = request.getContextPath(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -52,7 +54,7 @@
 					<li id="homejsp"><a href="<%=rootPath%>/">Home</a></li>
 					<li id="loginjsp"><a href="<%=url%>"><%=log%></a></li>
 					<li id="joinjsp"><a href="<%=rootPath%>/user/join.jsp">Join</a></li>
-					<li id="listjsp"><a href="<%=rootPath%>/exam/exam.jsp">Board</a></li>
+					<li id="listjsp"><a href="<%=rootPath%>/user/board.jsp">Board</a></li>
 					<li id="userlistjsp"><a href="<%=rootPath%>/user/list.jsp">UserList</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->

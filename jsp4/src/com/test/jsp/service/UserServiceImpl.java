@@ -77,9 +77,9 @@ public class UserServiceImpl implements UserService {
 				
 				UserInfo ui = new UserInfo();
 				ui.setUserNo(rs.getInt("userno"));
+				ui.setUserName(rs.getString("username"));
 				ui.setUserId(rs.getString("userid"));
 				ui.setUserPwd(rs.getString("userpwd"));
-				ui.setUserName(rs.getString("username"));
 				ui.setUserAge(rs.getInt("userage"));
 				ui.setUserAddress(rs.getString("useraddress"));
 				ui.setDiNo(rs.getInt("dino"));
@@ -111,12 +111,12 @@ public class UserServiceImpl implements UserService {
 			Connection con = dbCon.getConnection();
 			
 			String sql = "insert into user_info(" + 
-					" userid,userpwd,username,userage,useraddress" + 
+					" username,userid,userpwd,userage,useraddress" + 
 					" ) values (?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, (String)hm.get("id"));
-			ps.setString(2, (String)hm.get("pwd"));
-			ps.setString(3, (String)hm.get("name"));
+			ps.setString(1, (String)hm.get("name"));
+			ps.setString(2, (String)hm.get("id"));
+			ps.setString(3, (String)hm.get("pwd"));
 			ps.setString(4, (String)hm.get("age"));
 			ps.setString(5, (String)hm.get("address"));
 			result = ps.executeUpdate();
@@ -142,12 +142,12 @@ public class UserServiceImpl implements UserService {
 			Connection con = dbCon.getConnection();
 			
 			String sql = "insert into user_info(" + 
-					" userid,userpwd,username,userage,useraddress" + 
+					" username,userid,userpwd,userage,useraddress" + 
 					" ) values (?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, ui.getUserId());
-			ps.setString(2, ui.getUserPwd());
-			ps.setString(3, ui.getUserName());
+			ps.setString(1, ui.getUserName());
+			ps.setString(2, ui.getUserId());
+			ps.setString(3, ui.getUserPwd());
 			ps.setInt(4, ui.getUserAge());
 			ps.setString(5, ui.getUserAddress());
 			result = ps.executeUpdate();
@@ -214,7 +214,7 @@ public class UserServiceImpl implements UserService {
 			
 			Connection con = dbCon.getConnection();
 			
-			String sql = "select count(1) from user_info where userno = ? and userpwd = ?";
+			String sql = "select count(1) from user_info where userno=? and userpwd=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, ui.getUserNo());
 			ps.setString(2, ui.getUserPwd());
@@ -222,13 +222,42 @@ public class UserServiceImpl implements UserService {
 			while(rs.next()) {
 				int cnt = rs.getInt(1);
 				if(cnt == 1) {
-					sql = "delete from user_info where userno = ?";
+					sql = "delete from user_info where userno=?";
 					ps = con.prepareStatement(sql);
 					ps.setInt(1, ui.getUserNo());
 					result = ps.executeUpdate();
 				}
 			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				dbCon.closeCon();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public int updateUser(UserInfo ui) {
+		int result = 0;
+		DBCon dbCon = new DBCon();
+		
+		try {
+			
+			Connection con = dbCon.getConnection();
+			
+			String sql = "update user_info set username=?, userpwd=?, userage=?, useraddress=?, dino=? where userno=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, ui.getUserName());
+			ps.setString(2, ui.getUserPwd());
+			ps.setInt(3, ui.getUserAge());
+			ps.setString(4, ui.getUserAddress());
+			ps.setInt(5, ui.getDiNo());
+			ps.setInt(6, ui.getUserNo());
 			result = ps.executeUpdate();
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {

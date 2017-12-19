@@ -21,5 +21,7 @@ public interface UserService {
 	
 	public int deleteUser(UserInfo ui);
 	
+	public int updateUser(UserInfo ui);
+	
 	
 }

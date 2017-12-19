@@ -70,7 +70,6 @@ public class UserServlet extends HttpServlet {
 			HashMap<String,String> hm = new HashMap<String,String>();
 			try {
 				UserInfo ui = us.getUser(id, pwd);
-				Gson gs = new Gson();
 				if(ui.getUserId() == null) {
 					hm.put("result", "no");
 					hm.put("msg","아이디와 비밀번호를 확인하세요.");
@@ -80,6 +79,7 @@ public class UserServlet extends HttpServlet {
 					hm.put("result", "ok");
 					hm.put("msg", ui.getUserName() + "님 로그인 성공.");
 				}
+				Gson gs = new Gson();
 				out.println(gs.toJson(hm)); // 구글에서 만든 json 매퍼객체, spring에서는 jackson을 많이 사용.
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
@@ -108,12 +108,11 @@ public class UserServlet extends HttpServlet {
 			out.println(gs.toJson(hm));
 		}else if(cmd.equals("view")) {
 			int no = Integer.parseInt(req.getParameter("userno"));
-			Gson gs = new Gson();
 			UserInfo ui = us.getUser(no);
+			Gson gs = new Gson();
 			out.println(gs.toJson(ui));
 		}else if(cmd.equals("delete")) {
 			String checkPwd = req.getParameter("checkPwd");
-			Gson gs = new Gson();
 			UserInfo ui = (UserInfo)req.getSession().getAttribute("user");
 			ui.setUserPwd(checkPwd);
 			int result = us.deleteUser(ui);
@@ -125,6 +124,36 @@ public class UserServlet extends HttpServlet {
 				hm.put("msg", "회원탈퇴 성공.");
 				hm.put("url", "/user/logout.user?cmd=logout");
 			}
+			Gson gs = new Gson();
+			out.println(gs.toJson(hm));
+		}else if(cmd.equals("update")) {
+			String params= req.getParameter("params");
+			Gson gs = new Gson();
+			UserInfo ui = gs.fromJson(params, UserInfo.class);
+			ui.setUserNo(((UserInfo)req.getSession().getAttribute("user")).getUserNo());
+			ui.setUserId(((UserInfo)req.getSession().getAttribute("user")).getUserId());
+			int result = us.updateUser(ui);
+			HashMap<String,String> hm = new HashMap<String,String>();
+			hm.put("result", "no");
+			hm.put("msg", "회원수정 실패.");
+			if(result != 0) {
+				hm.put("result", "ok");
+				hm.put("msg", "회원수정 성공.");
+				hm.put("url", "/user/view.jsp?userno="+ui.getUserNo());
+			}
+			out.println(gs.toJson(hm));
+		}else if(cmd.equals("checkPwd")) {
+			String checkPwd = req.getParameter("checkPwd");
+			UserInfo ui = us.getUser(Integer.parseInt(req.getParameter("userNo")));
+			String userPwd = ui.getUserPwd();
+			HashMap<String,String> hm = new HashMap<String,String>();
+			hm.put("result", "no");
+			hm.put("msg", "비밀번호 다름.");
+			if(checkPwd.equals(userPwd)) {
+				hm.put("result", "ok");
+				hm.put("msg", "");
+			}
+			Gson gs = new Gson();
 			out.println(gs.toJson(hm));
 		}else {
 			res.sendRedirect("/error/error.jsp");
