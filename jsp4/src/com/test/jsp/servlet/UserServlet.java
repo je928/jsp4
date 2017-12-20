@@ -23,7 +23,6 @@ import sun.swing.UIAction;
 public class UserServlet extends HttpServlet {
 	
 	UserService us = new UserServiceImpl();
-	/*di(의존성 주입), ioc : anotation, useBean */
 	
 	public void doGet(HttpServletRequest req, 
 			HttpServletResponse res) throws IOException, ServletException {
@@ -118,7 +117,7 @@ public class UserServlet extends HttpServlet {
 			int result = us.deleteUser(ui);
 			HashMap<String,String> hm = new HashMap<String,String>();
 			hm.put("result", "no");
-			hm.put("msg", "회원탈퇴 실패.");
+			hm.put("msg", "비밀번호를 확인해주세요.");
 			if(result != 0) {
 				hm.put("result", "ok");
 				hm.put("msg", "회원탈퇴 성공.");

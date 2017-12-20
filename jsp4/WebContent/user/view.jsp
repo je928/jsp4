@@ -36,6 +36,7 @@
 			$("#diName").remove();
 			$("#diEtc").remove();
 			$("#checkPwd").remove();
+			$("#deleteUserBtn").remove();
 			$("#updateUserBtn").attr("id", "updateUser");
 		}else {
 			alert(result.msg);
@@ -63,7 +64,7 @@
 			data: param,
 			success: callback,
 			error: function(xhr,status) {
-				alert("에러 : "+xhr.responseText);
+				alert("에러: "+xhr.responseText);
 			}
 		});
 		
@@ -86,7 +87,7 @@
 			}
 		});
 		
-		$(document).on("click","#updateUserBtn", function() {
+		$(document).on("click", "#updateUserBtn", function() {
 			var url = "checkpwd.user";
 			var param = {};
 			param["cmd"] = "checkPwd";
@@ -104,7 +105,7 @@
 			});
 		});
 		
-		$(document).on("click","#updateUser", function() {
+		$(document).on("click", "#updateUser", function() {
 			if(confirm("수정하시겠습니까?")) {
 				var url = "update.user";
 				var params = {};
