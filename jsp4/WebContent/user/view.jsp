@@ -35,6 +35,7 @@
 			$("#diNo").attr("disabled", false);
 			$("#diName").remove();
 			$("#diEtc").remove();
+			$("#checkPwd").remove();
 			$("#updateUserBtn").attr("id", "updateUser");
 		}else {
 			alert(result.msg);
@@ -85,7 +86,7 @@
 			}
 		});
 		
-		$('#updateUserBtn').click(function() {
+		$(document).on("click","#updateUserBtn", function() {
 			var url = "checkpwd.user";
 			var param = {};
 			param["cmd"] = "checkPwd";
