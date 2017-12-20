@@ -7,30 +7,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-
-	var userList[] = new Array[]; 
-	
-	
-	
-</script>
 </head>
 <body>
 	
 	<div class="container">
 		<div class="page-header">
-			<h1>jstlExam</h1>
+			<h1>jstlExam3</h1>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<c:set var="test" value="테스트" scope="page" />
-				<c:set var="s_test" value="세션테스트" scope="session" />
-				<c:set var="a_test" value="어플리케이션테스트" scope="application" />
-				jstl's test : ${test}
-				<br>
-				session test : ${s_test}
-				<br>
-				application test : ${a_test}
+				<%
+				RequestDispatcher reqD = this.getServletContext().getRequestDispatcher("/exam/jstlExam4.jsp");
+				request.setAttribute("jsp4", "jsp4Example");
+				session.setAttribute("session", "sessionExample");
+				reqD.forward(request, response);
+				/* jstlExam4로 바로 이동함. request페이지간이동*/
+				%>
 			</div>
 		</div>
 	</div>

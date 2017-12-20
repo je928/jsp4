@@ -54,8 +54,9 @@
 					<li id="homejsp"><a href="<%=rootPath%>/">Home</a></li>
 					<li id="loginjsp"><a href="<%=url%>"><%=log%></a></li>
 					<li id="joinjsp"><a href="<%=rootPath%>/user/join.jsp">Join</a></li>
-					<li id="listjsp"><a href="<%=rootPath%>/user/board.jsp">Board</a></li>
+					<li id="boardjsp"><a href="<%=rootPath%>/user/board.jsp">Board</a></li>
 					<li id="userlistjsp"><a href="<%=rootPath%>/user/list.jsp">UserList</a></li>
+					<li id="deptlistjsp"><a href="<%=rootPath%>/dept/list">DepartList</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

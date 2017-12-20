@@ -135,7 +135,7 @@
 	});
 	
 </script>
-<body>
+<body style="background:#ffffff;">
 
 	<div class="container">
 		<div class="page-header">
