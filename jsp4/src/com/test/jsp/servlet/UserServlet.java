@@ -23,6 +23,7 @@ import sun.swing.UIAction;
 public class UserServlet extends HttpServlet {
 	
 	UserService us = new UserServiceImpl();
+	/*di(의존성 주입), ioc : anotation, useBean */
 	
 	public void doGet(HttpServletRequest req, 
 			HttpServletResponse res) throws IOException, ServletException {

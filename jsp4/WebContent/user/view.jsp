@@ -64,7 +64,7 @@
 			data: param,
 			success: callback,
 			error: function(xhr,status) {
-				alert("에러: "+xhr.responseText);
+				alert("에러 : "+xhr.responseText);
 			}
 		});
 		
