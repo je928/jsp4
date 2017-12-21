@@ -17,7 +17,12 @@
 			str += "<tr data-view='" + result[i].userNo + "'>";
 			for(var j=0; j<ths.length; j++) {
 				var th = ths[j].getAttribute("data-field");
-				str += "<td class='text-center'>" + result[i][th] + "</td>";
+				if(result[i][th] == undefined) {
+					str += "<td class='text-center'></td>";	
+				}else {
+					str += "<td class='text-center'>" + result[i][th] + "</td>";
+				}
+				
 			}
 			str += "</tr>";
 		}

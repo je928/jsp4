@@ -20,7 +20,7 @@
 <script type="text/javascript">
 	function logoutFunc() {
 		if(confirm("로그아웃하시겠습니까?")) {
-			location.href="/user/logout.user?cmd=logout";	
+			location.href="<%=rootPath%>/user/logout.user?cmd=logout";	
 		}
 	}
 </script>
@@ -53,7 +53,9 @@
 				<ul class="nav navbar-nav">
 					<li id="homejsp"><a href="<%=rootPath%>/">Home</a></li>
 					<li id="loginjsp"><a href="<%=url%>"><%=log%></a></li>
-					<li id="joinjsp"><a href="<%=rootPath%>/user/join.jsp">Join</a></li>
+					<% if(user == null) { %>
+						<li id="joinjsp"><a href="<%=rootPath%>/user/join.jsp">Join</a></li>
+					<% } %>
 					<li id="boardjsp"><a href="<%=rootPath%>/user/board.jsp">Board</a></li>
 					<li id="userlistjsp"><a href="<%=rootPath%>/user/list.jsp">UserList</a></li>
 					<li id="deptlistjsp"><a href="<%=rootPath%>/dept/list">DepartList</a></li>
