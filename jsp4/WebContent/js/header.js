@@ -18,7 +18,7 @@ $(document).ready(function() {
 			} else if (menu2 == "list") {
 				$("#userlistjsp").addClass("active");
 			}
-		}else if(menu1 == "dept") {
+		}else if(menu1 == "depart") {
 			if (menu2 == "list") {
 				$("#deptlistjsp").addClass("active");
 			}

@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>DepartView</title>
+<title>DepartUpdate</title>
 </head>
 <body>
 
 	<div class="container">
 		<div class="page-header">
-			<h1>DepartView</h1>
+			<h1>DepartUpdate</h1>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
@@ -30,11 +30,11 @@
 						</tr>
 						<tr>
 							<td class="text-center">diname</td>
-							<td class='text-center'>${depart.diname}</td>
+							<td class='text-center'><input type="text" name="diname" id="diname" value="${depart.diname}" size="30" maxlength="50"></td>
 						</tr>
 						<tr>
-							<td class="text-center">didesc</td>
-							<td class='text-center'>${depart.didesc}</td>
+							<td class="text-center">dietc</td>
+							<td class='text-center'><input type="text" name="didesc" id="didesc" value="${depart.didesc}" size="30" maxlength="50"></td>
 						</tr>
 					</tbody>
 				</table>

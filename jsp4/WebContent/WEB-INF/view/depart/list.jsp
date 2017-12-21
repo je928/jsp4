@@ -6,36 +6,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>DepartView</title>
+<title>DepartList</title>
 </head>
 <body>
 
 	<div class="container">
 		<div class="page-header">
-			<h1>DepartView</h1>
+			<h1>DepartList</h1>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table table-bordered table-hover table-striped" id="table" style="width:400px; margin:0 auto;">
+				<table class="table table-bordered table-hover table-striped" id="table"  style="width:400px; margin:0 auto;">
 					<thead>
 						<tr>
-							<th class="text-center">항목</th>
-							<th class="text-center">데이터</th>
+							<th class="text-center">dino</th>
+							<th class="text-center">diname</th>
+							<th class="text-center">dietc</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="text-center">dino</td>
-							<td class='text-center'>${depart.dino}</td>
-						</tr>
-						<tr>
-							<td class="text-center">diname</td>
-							<td class='text-center'>${depart.diname}</td>
-						</tr>
-						<tr>
-							<td class="text-center">didesc</td>
-							<td class='text-center'>${depart.didesc}</td>
-						</tr>
+						<c:forEach var="list" items="${departList}">
+							<%-- <c:if test="${list.dino % 2 eq 1}"> --%>
+							<tr>
+								<td class='text-center'>${list.dino}</td>
+								<td class='text-center'>${list.diname}</td>
+								<td class='text-center'>${list.didesc}</td>
+							</tr>
+							<%-- </c:if> --%>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>

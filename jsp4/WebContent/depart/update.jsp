@@ -16,7 +16,28 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				
+				<table class="table table-bordered table-hover table-striped" id="table" style="width:400px; margin:0 auto;">
+					<thead>
+						<tr>
+							<th class="text-center">항목</th>
+							<th class="text-center">데이터</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-center">dino</td>
+							<td class='text-center'>${depart.dino}</td>
+						</tr>
+						<tr>
+							<td class="text-center">diname</td>
+							<td class='text-center'><input type="text" name="diname" id="diname" value="${depart.diname}" size="30" maxlength="50"></td>
+						</tr>
+						<tr>
+							<td class="text-center">didesc</td>
+							<td class='text-center'><input type="text" name="didesc" id="didesc" value="${depart.didesc}" size="30" maxlength="50"></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

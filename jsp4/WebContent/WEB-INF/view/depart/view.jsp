@@ -33,7 +33,7 @@
 							<td class='text-center'>${depart.diname}</td>
 						</tr>
 						<tr>
-							<td class="text-center">didesc</td>
+							<td class="text-center">dietc</td>
 							<td class='text-center'>${depart.didesc}</td>
 						</tr>
 					</tbody>

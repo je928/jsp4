@@ -16,12 +16,12 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table table-bordered table-hover table-striped" id="table">
+				<table class="table table-bordered table-hover table-striped" id="table" style="width:400px; margin:0 auto;">
 					<thead>
 						<tr>
-							<th class="text-center" data-field="diNo">dino</th>
-							<th class="text-center" data-field="diName">diname</th>
-							<th class="text-center" data-field="diDesc">dietc</th>
+							<th class="text-center">dino</th>
+							<th class="text-center">diname</th>
+							<th class="text-center">didesc</th>
 						</tr>
 					</thead>
 					<tbody>

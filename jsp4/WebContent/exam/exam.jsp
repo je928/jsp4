@@ -22,6 +22,7 @@
 	ArrayList<HashMap<String,String>> userList = le.getUserList();
 %>
 	<jsp:include page="/common/header.jsp"></jsp:include>
+	<!-- page import형식은 java파일을 만들지 않는다. jsp:include액션태그는 java파일 생성. -->
 	
 	<div class="container">
 		<table border="1" style="text-align:center;">
