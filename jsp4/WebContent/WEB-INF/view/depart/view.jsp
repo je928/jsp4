@@ -38,6 +38,9 @@
 						</tr>
 					</tbody>
 				</table>
+				<input class="btn btn-primary btn-block" type="button" value="부서리스트"
+						 style="width:100px; margin:0 auto; margin-top: 20px;"
+						 onclick="javascript:location.href='/depart/list'">
 			</div>
 		</div>
 	</div>

@@ -11,7 +11,7 @@
 	
 $(document).ready(function() {
 	
-	$('tr').hover(function() {
+	$('tbody tr').hover(function() {
 		$(this).css("cursor", "pointer");
 		$(this).css("color", "#424242");
 		$(this).css("font-weight", "bold");
@@ -20,7 +20,7 @@ $(document).ready(function() {
 		$(this).css("color", "black");
 		$(this).css("font-weight", "");
 	});
-	$('tr').click(function() {
+	$('tbody tr').click(function() {
 		var diNo = $(this).find('td').eq(0).attr("data-view");
 		location.href = "/depart/view?dino=" + diNo;
 	});
