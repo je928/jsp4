@@ -7,6 +7,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>DepartList</title>
+<script type="text/javascript">
+	
+$(document).ready(function() {
+	
+	$('tr').hover(function() {
+		$(this).css("cursor", "pointer");
+		$(this).css("color", "#424242");
+		$(this).css("font-weight", "bold");
+	}, function(){
+		$(this).css("cursor", "default");
+		$(this).css("color", "black");
+		$(this).css("font-weight", "");
+	});
+	$('tr').click(function() {
+		var diNo = $(this).find('td').eq(0).attr("data-view");
+		location.href = "/depart/view?dino=" + diNo;
+	});
+	
+});
+
+</script>
 </head>
 <body>
 
@@ -26,13 +47,11 @@
 					</thead>
 					<tbody>
 						<c:forEach var="list" items="${departList}">
-							<%-- <c:if test="${list.dino % 2 eq 1}"> --%>
 							<tr>
-								<td class='text-center'>${list.dino}</td>
-								<td class='text-center'>${list.diname}</td>
-								<td class='text-center'>${list.didesc}</td>
+								<td class='text-center' data-view="${list.diNo}">${list.diNo}</td>
+								<td class='text-center'>${list.diName}</td>
+								<td class='text-center'>${list.diEtc}</td>
 							</tr>
-							<%-- </c:if> --%>
 						</c:forEach>
 					</tbody>
 				</table>

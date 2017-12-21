@@ -20,7 +20,7 @@
 					<thead>
 						<tr>
 							<th class="text-center">항목</th>
-							<th class="text-center">데이터</th>
+							<th class="text-center">내용</th>
 						</tr>
 					</thead>
 					<tbody>

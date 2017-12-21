@@ -20,21 +20,21 @@
 					<thead>
 						<tr>
 							<th class="text-center">항목</th>
-							<th class="text-center">데이터</th>
+							<th class="text-center">내용</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td class="text-center">dino</td>
-							<td class='text-center'>${depart.dino}</td>
+							<td class='text-center'>${depart.diNo}</td>
 						</tr>
 						<tr>
 							<td class="text-center">diname</td>
-							<td class='text-center'>${depart.diname}</td>
+							<td class='text-center'>${depart.diName}</td>
 						</tr>
 						<tr>
 							<td class="text-center">dietc</td>
-							<td class='text-center'>${depart.didesc}</td>
+							<td class='text-center'>${depart.diEtc}</td>
 						</tr>
 					</tbody>
 				</table>

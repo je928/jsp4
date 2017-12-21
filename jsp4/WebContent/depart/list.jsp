@@ -26,13 +26,11 @@
 					</thead>
 					<tbody>
 						<c:forEach var="list" items="${departList}">
-							<%-- <c:if test="${list.dino % 2 eq 1}"> --%>
 							<tr>
 								<td class='text-center'>${list.dino}</td>
 								<td class='text-center'>${list.diname}</td>
 								<td class='text-center'>${list.didesc}</td>
 							</tr>
-							<%-- </c:if> --%>
 						</c:forEach>
 					</tbody>
 				</table>
