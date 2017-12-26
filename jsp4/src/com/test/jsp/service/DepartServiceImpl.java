@@ -17,14 +17,14 @@ public class DepartServiceImpl implements DepartService {
 	@Override
 	//public void selectDepartList(HttpServletRequest req) {
 	// public ArrayList<HashMap<String,Object>> selectDepartList() {
-	public ArrayList<DepartInfo> selectDepartList() {
+	public ArrayList<DepartInfo> selectDepartList(String search, String searchStr) {
 		//ArrayList<HashMap<String,Object>> departList = null;
 		ArrayList<DepartInfo> departList = null;
 		
 		DBCon dbCon = new DBCon();
 		try {
 			DepartDAO dd = new DepartDAOImpl(dbCon.getConnection());
-			departList = dd.selectDepartList();
+			departList = dd.selectDepartList(search, searchStr);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -76,13 +76,63 @@ public class DepartServiceImpl implements DepartService {
 	}
 
 	@Override
-	public void updateDepart(HttpServletRequest req) {
-		
+	public int updateDepart(DepartInfo di) {
+		DepartInfo depart = null;
+		DBCon dbCon = new DBCon();
+		int result = 0;
+		try {
+			DepartDAO dd = new DepartDAOImpl(dbCon.getConnection());
+			result = dd.updateDepart(di);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbCon.closeCon();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
 
 	@Override
-	public void insertDepart(HttpServletRequest req) {
-		
+	public int insertDepart(DepartInfo di) {
+		DepartInfo depart = null;
+		DBCon dbCon = new DBCon();
+		int result = 0;
+		try {
+			DepartDAO dd = new DepartDAOImpl(dbCon.getConnection());
+			result = dd.insertDepart(di);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbCon.closeCon();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	@Override
+	public int deleteDepart(DepartInfo di) {
+		DepartInfo depart = null;
+		DBCon dbCon = new DBCon();
+		int result = 0;
+		try {
+			DepartDAO dd = new DepartDAOImpl(dbCon.getConnection());
+			result = dd.deleteDepart(di);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbCon.closeCon();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
 	
 }

@@ -41,6 +41,9 @@
 				<input class="btn btn-primary btn-block" type="button" value="부서리스트"
 						 style="width:100px; margin:0 auto; margin-top: 20px;"
 						 onclick="javascript:location.href='/depart/list'">
+				<input class="btn btn-default btn-block" type="button" value="수정"
+						 style="width:60px; margin:0 auto; margin-top: 10px;"
+						 onclick="javascript:location.href='/depart/updateOk?dino=${depart.diNo}'">
 			</div>
 		</div>
 	</div>

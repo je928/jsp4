@@ -7,6 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>DepartView</title>
+<script type="text/javascript">
+	function updateDepart() {
+		location.href="/depart/update?dino="+${depart.diNo};		
+	}
+</script>
 </head>
 <body>
 
@@ -41,6 +46,9 @@
 				<input class="btn btn-primary btn-block" type="button" value="부서리스트"
 						 style="width:100px; margin:0 auto; margin-top: 20px;"
 						 onclick="javascript:location.href='/depart/list'">
+				<input class="btn btn-default btn-block" type="button" value="수정"
+						 style="width:60px; margin:0 auto; margin-top: 10px;"
+						 onclick="updateDepart()">
 			</div>
 		</div>
 	</div>

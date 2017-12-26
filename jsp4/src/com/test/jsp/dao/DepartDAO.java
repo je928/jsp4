@@ -7,9 +7,10 @@ import com.test.jsp.dto.DepartInfo;
 
 public interface DepartDAO {
 	
-	public ArrayList<DepartInfo> selectDepartList() throws SQLException;
+	public ArrayList<DepartInfo> selectDepartList(String search, String searchStr) throws SQLException;
 	public DepartInfo selectDepartView(int dino) throws SQLException;
-	public void updateDepart();
-	public void insertDepart();
+	public int updateDepart(DepartInfo di) throws SQLException;
+	public int insertDepart(DepartInfo di) throws SQLException;
+	public int deleteDepart(DepartInfo di) throws SQLException;
 	
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.test.jsp.dto.DepartInfo;
 import com.test.jsp.service.DepartService;
 import com.test.jsp.service.DepartServiceImpl;
 
@@ -52,16 +53,43 @@ public class DepartServlet extends HttpServlet {
 		
 		if(cmd.equals("list")) {
 			//ds.selectDepartList(req);
-			req.setAttribute("departList", ds.selectDepartList());
+			String search = req.getParameter("searchOption");
+			String searchStr = req.getParameter("searchStr");
+			req.setAttribute("departList", ds.selectDepartList(search, searchStr));
+			req.setAttribute("search", search);
+			req.setAttribute("searchStr", searchStr);
 		}else if(cmd.equals("view")) {
 			int dino = Integer.parseInt(req.getParameter("dino"));
 			req.setAttribute("depart", ds.selectDepartView(dino));
 		}else if(cmd.equals("update")) {
 			int dino = Integer.parseInt(req.getParameter("dino"));
 			req.setAttribute("depart", ds.selectDepartView(dino));
-			
+		}else if(cmd.equals("updateOk")) {
+			int dino = Integer.parseInt(req.getParameter("dino"));
+			DepartInfo di = new DepartInfo();
+			di.setDiNo(dino);
+			req.setAttribute("update", ds.updateDepart(di));
 		}else if(cmd.equals("insert")) {
 			
+		}else if(cmd.equals("insertOk")) {
+			String diName = req.getParameter("diName");
+			String diEtc = req.getParameter("diEtc");
+			DepartInfo di = new DepartInfo();
+			di.setDiName(diName);
+			di.setDiEtc(diEtc);
+			req.setAttribute("insert", ds.insertDepart(di));
+			uri = "/depart/list";
+		}else if(cmd.equals("delete")) {
+			int diNo = Integer.parseInt(req.getParameter("dino"));
+			DepartInfo di = new DepartInfo();
+			di.setDiNo(diNo);
+			int result = ds.deleteDepart(di);
+			String msg = "삭제에 실패.";
+			if(result != 0) {
+				msg = "부서가 삭제되었습니다.";
+			}
+			req.setAttribute("msg", msg);
+			uri = "/depart/list";
 		}else {
 			uri = "/error/error";
 		}
