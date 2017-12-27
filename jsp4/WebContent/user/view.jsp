@@ -60,6 +60,8 @@
 				}
 			});
 			
+			$('#userListBtn').remove();
+			$('#viewBtn').css('display','block');
 			$('#diNo').css('display','none');
 			$('#dino').css('display','block');
 			$("#userPwd").attr("disabled", false);
@@ -71,6 +73,7 @@
 			$("#diEtc").remove();
 			$("#checkPwd").remove();
 			$("#deleteUserBtn").remove();
+			$("#updateUserBtn").css('marginTop','10px');
 			$("#updateUserBtn").attr("id", "updateUser");
 		}else {
 			alert(result.msg);
@@ -89,6 +92,7 @@
 	$(document).ready(function() {
 		
 		$('#dino').css('display','none');
+		$('#viewBtn').css('display','none');
 		
 		var url = "view.user";
 		var param = {};
@@ -167,9 +171,15 @@
 			}
 		});
 		
-		$('#userListBtn').click(function() {
+		$(document).on("click", "#userListBtn", function() {
 			location.href = "/user/list.jsp";	
 		});
+		
+		$(document).on("click", "#viewBtn", function() {
+			var userno = "<%=request.getParameter("userno")%>";
+			location.href = "/user/view.jsp?userno=" + userno;	
+		});
+		
 	});
 	
 </script>
@@ -217,12 +227,13 @@
 						if((user != null) && 
 							 user.getUserNo().toString().equals(request.getParameter("userno"))) {
 					%>
-					<input type="text" name="checkPwd" id="checkPwd" class="form-control" placeholder="checkPwd" style="margin-top:10px;">
+					<input type="password" name="checkPwd" id="checkPwd" class="form-control" placeholder="checkPwd" style="margin-top:10px;">
 					<input class="btn btn-lg btn-default btn-block" type="button" value="회원수정" id="updateUserBtn" style="margin-top:5px;">
 					<input class="btn btn-lg btn-default btn-block" type="button" value="회원탈퇴" id="deleteUserBtn">
 					<%
 						}
 					%>
+					<input class="btn btn-lg btn-default btn-block" type="button" value="취소" id="viewBtn">
 				</form>
 			</div>
 		</div>
