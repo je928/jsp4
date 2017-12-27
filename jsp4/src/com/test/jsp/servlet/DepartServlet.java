@@ -65,10 +65,16 @@ public class DepartServlet extends HttpServlet {
 			int dino = Integer.parseInt(req.getParameter("dino"));
 			req.setAttribute("depart", ds.selectDepartView(dino));
 		}else if(cmd.equals("updateOk")) {
-			int dino = Integer.parseInt(req.getParameter("dino"));
+			int dino = Integer.parseInt(req.getParameter("diNo"));
+			String diName = req.getParameter("diName");
+			String diEtc = req.getParameter("diEtc");
 			DepartInfo di = new DepartInfo();
 			di.setDiNo(dino);
+			di.setDiName(diName);
+			di.setDiEtc(diEtc);
 			req.setAttribute("update", ds.updateDepart(di));
+			req.setAttribute("diNo", dino);
+			uri = "/depart/list";
 		}else if(cmd.equals("insert")) {
 			
 		}else if(cmd.equals("insertOk")) {

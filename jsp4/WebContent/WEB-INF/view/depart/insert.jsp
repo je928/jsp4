@@ -24,7 +24,6 @@
 		$('#frm').submit();
 		
 	}
-	
 </script>
 </head>
 <body>
@@ -46,11 +45,11 @@
 						<tbody>
 							<tr>
 								<td class="text-center">diname</td>
-								<td class='text-center'><input type="text" id="diName" name="diName" value=""></td>
+								<td class='text-center'><input type="text" id="diName" name="diName" value="" size="30" maxlength="50"></td>
 							</tr>
 							<tr>
 								<td class="text-center">dietc</td>
-								<td class='text-center'><input type="text" id="diEtc" name="diEtc" value=""></td>
+								<td class='text-center'><input type="text" id="diEtc" name="diEtc" value="" size="30" maxlength="50"></td>
 							</tr>
 						</tbody>
 					</table>

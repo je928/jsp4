@@ -74,6 +74,7 @@ function deleteDepart(dino) {
 						</tr>
 					</thead>
 					<tbody>
+						<c:if test="${!empty departList}">
 						<c:forEach var="list" items="${departList}">
 							<tr>
 								<td class='text-center' data-view="${list.diNo}">${list.diNo}</td>
@@ -82,6 +83,12 @@ function deleteDepart(dino) {
 								<td class='text-center'><input type="button" onclick="deleteDepart(${list.diNo})" value="삭제" /></td>
 							</tr>
 						</c:forEach>
+						</c:if>
+						<c:if test="${empty departList}">
+							<tr>
+								<td class='text-center' colspan="4">데이터가 없습니다.</td>
+							</tr>
+						</c:if>
 					</tbody>
 				</table>
 				<input class="btn btn-primary btn-block" type="button" value="부서입력"
@@ -102,6 +109,13 @@ function deleteDepart(dino) {
 		<script>
 		alert("${msg}");
 		location.href="/depart/list";
+		</script>
+	</c:if>
+	
+	<c:if test="${update == 1}">
+		<script>
+		alert("부서가 수정되었습니다.");
+		location.href="/depart/view?dino=" + ${diNo};
 		</script>
 	</c:if>
 
