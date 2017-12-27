@@ -11,7 +11,7 @@
 </head>
 <script>
 	
-	function callback(obj) {
+	function afterLogin(obj) {
 		//var obj = JSON.parse(re);
 		if(obj.result == 'ok') {
 			alert(obj.msg);
@@ -21,7 +21,33 @@
 		}
 	}
 	
+	function callback(obj) {
+		var str = "";
+		/* for(var di of obj) {
+			str += "<option value='" + di.diNo + "'>" + di.diName + "</option>";
+		} */
+		for(var i=0; i<obj.length; i++) {
+			str += "<option value='" + obj[i].diNo + "'>" + obj[i].diName + "</option>";
+		}
+		$('#dino').html(str);
+	}
+	
 	$(document).ready(function() {
+		
+		var url = "dino.user";
+		var param = {};
+		param["cmd"] = "dino";
+		$.ajax({
+			type: "post",
+			url: url,
+			dataType: "json",
+			data: param,
+			success: callback,
+			error: function(xhr,status) {
+				alert("에러 : "+xhr.responseText);
+			}
+		});
+		
 		$("#joinBtn").click(function () {
 			var url = "join.user";
 			var params = {};
@@ -35,6 +61,7 @@
 			params["userName"] = $("#name").val();
 			params["userAge"] = $("#age").val();
 			params["userAddress"] = $("#address").val();
+			params["diNo"] = $("#dino").val();
 			var param = {};
 			param["cmd"] = "join";
 			param["params"] = JSON.stringify(params);
@@ -43,7 +70,7 @@
 				url: url,
 				dataType: "json",
 				data: param,
-				success: callback,
+				success: afterLogin,
 				error: function(xhr,status) {
 					alert("에러 : "+xhr.responseText);
 				}
@@ -72,6 +99,11 @@
 			
 			<label for="address" class="sr-only">Address</label>
 			<input type="text" name="address" id="address" class="form-control" placeholder="Address" required>
+			
+			<label for="dino" class="sr-only">Dino</label>
+			<select name="dino" id="dino" class="form-control" style="height:44px; padding-left:5px;">
+				<!-- <option value=""></option> -->
+			</select>
 			
 			<input class="btn btn-lg btn-info btn-block" type="button" value="Join" id="joinBtn">
 		</form>

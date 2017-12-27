@@ -11,7 +11,7 @@
 </head>
 <script>
 	
-	function callback(result) {
+	function afterChkPwd(result) {
 		for(var key in result) {
 			$("#" + key).val(result[key]);
 		}
@@ -26,8 +26,42 @@
 		}
 	}
 	
+	function callback(result) {
+		var str = "";
+		/* for(var di of obj) {
+			str += "<option value='" + di.diNo + "'>" + di.diName + "</option>";
+		} */
+		var dinoVal = $('#diNo').val();
+		for(var i=0; i<result.length; i++) {
+			if(result[i].diNo != dinoVal) {
+				str += "<option value='" + result[i].diNo + "'>" + result[i].diName + "</option>";	
+			}else {
+				str += "<option value='" + result[i].diNo + "' selected >" + result[i].diName + "</option>";
+			}
+		}
+		$('#dino').html(str);
+	}
+	
 	function callbackChkPwd(result) {
+		
 		if(result.result == "ok") {
+			
+			var url = "dino.user";
+			var param = {};
+			param["cmd"] = "dino";
+			$.ajax({
+				type: "post",
+				url: url,
+				dataType: "json",
+				data: param,
+				success: callback,
+				error: function(xhr,status) {
+					alert("에러 : "+xhr.responseText);
+				}
+			});
+			
+			$('#diNo').css('display','none');
+			$('#dino').css('display','block');
 			$("#userPwd").attr("disabled", false);
 			$("#userName").attr("disabled", false);
 			$("#userAge").attr("disabled", false);
@@ -53,6 +87,9 @@
 	}
 	
 	$(document).ready(function() {
+		
+		$('#dino').css('display','none');
+		
 		var url = "view.user";
 		var param = {};
 		param["cmd"] = "view";
@@ -62,7 +99,7 @@
 			url: url,
 			dataType: "json",
 			data: param,
-			success: callback,
+			success: afterChkPwd,
 			error: function(xhr,status) {
 				alert("에러 : "+xhr.responseText);
 			}
@@ -113,7 +150,7 @@
 				params["userPwd"] = $("#userPwd").val();
 				params["userAge"] = $("#userAge").val();
 				params["userAddress"] = $("#userAddress").val();
-				params["diNo"] = $("#diNo").val();
+				params["diNo"] = $("#dino").val();
 				var param = {};
 				param["cmd"] = "update";
 				param["params"] = JSON.stringify(params);
@@ -162,6 +199,9 @@
 					
 					<label for="dino" class="sr-only">DiNo</label>
 					<input type="number" name="diNo" id="diNo" class="form-control" placeholder="Dino" disabled required>
+					<select name="dino" id="dino" class="form-control" style="height:44px; padding-left:5px;">
+						<!-- <option value=""></option> -->
+					</select>
 					
 					<label for="diname" class="sr-only">DiName</label>
 					<input type="text" name="diName" id="diName" class="form-control" placeholder="Diname" disabled required>

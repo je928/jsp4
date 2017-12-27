@@ -142,14 +142,15 @@ public class UserServiceImpl implements UserService {
 			Connection con = dbCon.getConnection();
 			
 			String sql = "insert into user_info(" + 
-					" username,userid,userpwd,userage,useraddress" + 
-					" ) values (?,?,?,?,?)";
+					" username,userid,userpwd,userage,useraddress,dino" + 
+					" ) values (?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, ui.getUserName());
 			ps.setString(2, ui.getUserId());
 			ps.setString(3, ui.getUserPwd());
 			ps.setInt(4, ui.getUserAge());
 			ps.setString(5, ui.getUserAddress());
+			ps.setInt(6, ui.getDiNo());
 			result = ps.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e);
