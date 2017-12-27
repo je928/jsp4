@@ -21,7 +21,9 @@
 			return false;
 		}
 		
-		$('#frm').submit();
+		if(confirm("수정하시겠습니까?")) {
+			$('#frm').submit();	
+		}
 		
 	}
 </script>
