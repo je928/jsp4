@@ -33,6 +33,9 @@ body {
 .form-signin input[type="text"] {
   margin-bottom: 2px;
 }
+.form-signin input[type="number"] {
+  margin-bottom: 2px;
+}
 .form-signin input[type="password"] {
   margin-bottom: 2px !important;
 }
