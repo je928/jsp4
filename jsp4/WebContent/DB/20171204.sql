@@ -95,3 +95,22 @@ where userid='hong';
 update user_info set dino='2' where userno=4;
 select * from user_info;
 alter table user_info add unique index idx_unique_userid (userid);
+
+/*20171214 jsp query*/
+select * from
+	user_info ui
+left outer join
+	depart_info di 
+on ui.dino=di.dino
+;
+
+/*20171227 jsp query*/
+alter table user_info
+add foreign key(dino)
+REFERENCES depart_info(dino);
+
+select * from user_info
+where dino not in(select dino from depart_info);
+select * from user_info;
+commit;
+
