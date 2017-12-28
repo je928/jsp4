@@ -1,3 +1,5 @@
+/*mariadb-10.2.11-winx64.msi*/
+
 create database jsp4;
 use jsp4;
 create table user_info(
