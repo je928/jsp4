@@ -22,7 +22,7 @@ public class DepartServiceImpl implements DepartService {
 			DepartDAO dd = new DepartDAOImpl(dbCon.getConnection());
 			departList = dd.selectDepartList(search, searchStr);
 		} catch (ClassNotFoundException e) {
-		// } catch (ClassNotFoundException | SQLException e) { // jdk 1.7 이상 사용 가능
+		// } catch (ClassNotFoundException | SQLException e) { // jdk 1.7 이상 사용 가능.
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
