@@ -2,10 +2,6 @@ package com.test.jsp.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpServletRequest;
 
 import com.test.jsp.common.DBCon;
 import com.test.jsp.dao.DepartDAO;
@@ -25,7 +21,10 @@ public class DepartServiceImpl implements DepartService {
 		try {
 			DepartDAO dd = new DepartDAOImpl(dbCon.getConnection());
 			departList = dd.selectDepartList(search, searchStr);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException e) {
+		// } catch (ClassNotFoundException | SQLException e) { // jdk 1.7 이상 사용 가능
+			e.printStackTrace();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -58,7 +57,9 @@ public class DepartServiceImpl implements DepartService {
 		try {
 			DepartDAO dd = new DepartDAOImpl(dbCon.getConnection());
 			depart = dd.selectDepartView(dino);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -83,7 +84,9 @@ public class DepartServiceImpl implements DepartService {
 		try {
 			DepartDAO dd = new DepartDAOImpl(dbCon.getConnection());
 			result = dd.updateDepart(di);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -103,7 +106,9 @@ public class DepartServiceImpl implements DepartService {
 		try {
 			DepartDAO dd = new DepartDAOImpl(dbCon.getConnection());
 			result = dd.insertDepart(di);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -123,7 +128,9 @@ public class DepartServiceImpl implements DepartService {
 		try {
 			DepartDAO dd = new DepartDAOImpl(dbCon.getConnection());
 			result = dd.deleteDepart(di);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
