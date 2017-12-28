@@ -23,8 +23,14 @@
 	
 	function callback(obj) {
 		var str = "";
+		/* 자바스크립트 foreach문 */
 		/* for(var di of obj) {
 			str += "<option value='" + di.diNo + "'>" + di.diName + "</option>";
+		} */
+		/* 자바스크립트 Iterator문?? */
+		/* for(var di in obj) {
+			var aa = obj[di];
+			str += "<option value='" + aa.diNo + "'>" + aa.diName + "</option>";
 		} */
 		for(var i=0; i<obj.length; i++) {
 			str += "<option value='" + obj[i].diNo + "'>" + obj[i].diName + "</option>";
